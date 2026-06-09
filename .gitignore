@@ -1,0 +1,23 @@
+# --- Dependencies ---
+node_modules/
+
+# --- Build output (tsc outDir, see tsconfig.json) ---
+dist/
+
+# --- npm pack output (CI runs `npm pack --dry-run`; a real pack emits a tarball) ---
+*.tgz
+
+# --- Lockfile (extracted repos ship no committed lockfile, see ci.yml) ---
+pnpm-lock.yaml
+
+# --- Debug logs ---
+*.log
+
+# --- Env files & secrets ---
+.env
+.env.*
+
+# --- OS / editor ---
+.DS_Store
+.idea/
+.vscode/
