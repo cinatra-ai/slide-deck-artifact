@@ -15,7 +15,34 @@ export const slideDeckArtifactManifest: SemanticArtifactManifest = {
     },
   },
   skills: {
-    matchers: ["@cinatra-ai/slide-deck-artifact:slide-deck-matcher"],
+    matchers: ["@cinatra-ai/slide-deck-matcher-skill:slide-deck-matcher"],
   },
   matcherConfidenceThreshold: 0.7,
+  objectTypes: [
+    {
+      type: "@cinatra-ai/slide-deck:deck",
+      claim: "dedicated",
+      dispositions: {
+        projection: "artifact-safe",
+        pinnable: true,
+        snapshotPolicy: "content",
+        sensitivity: "normal",
+      },
+      schema: {
+        type: "object",
+        properties: {
+          title: {
+            type: "string",
+          },
+          slideCount: {
+            type: "number",
+          },
+          runId: {
+            type: "string",
+          },
+        },
+        additionalProperties: true,
+      },
+    },
+  ],
 };
