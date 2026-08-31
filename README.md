@@ -6,6 +6,8 @@ To install, add `@cinatra-ai/slide-deck-artifact` as a dependency in your worksp
 
 Usage: attach or upload a PDF to Cinatra. The matcher evaluates the file's visual structure (orientation, text density, heading layout) and assigns a confidence score. Files scoring at or above 0.7 are classified as slide decks. Native presentation formats such as PPTX or PPT must be exported to PDF first; the matcher accepts `application/pdf` only.
 
+Reading: a deck is read in the embedded PDF viewer the host already ships — the browser's own viewer fills the panel and pages itself, and this package adds no controls. Where there is no preview, that viewer offers the download instead of an empty panel. For development, update the artifact manifest in `package.json` or the display sources in `src/renderers/`, then run `node extension-kind-gate.mjs` to validate the package and `pnpm test` before publishing.
+
 Troubleshooting: if a legitimate slide deck is not classified (missed), check that the PDF export preserved landscape orientation and slide structure. Text-dense portrait PDFs and scanned image-only PDFs that lack slide structure will correctly return `matches:false`. If a prose PDF is incorrectly matched, review whether it uses a landscape, sparse-text layout that resembles a deck — the matcher follows visual structure, not content topic.
 
 ## Works with
@@ -18,3 +20,4 @@ Troubleshooting: if a legitimate slide deck is not classified (missed), check th
 - Retrieve a past pitch, sales, or board deck on demand
 - Attach a deck as context for a chat thread or a teammate handoff
 - Preview, download, or reclassify a deck from the library
+- Read a deck in the embedded PDF viewer the host already ships
