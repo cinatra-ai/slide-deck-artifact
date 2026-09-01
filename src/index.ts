@@ -39,7 +39,7 @@ export const slideDeckArtifactManifest: SemanticArtifactManifest = {
   matcherConfidenceThreshold: 0.7,
   objectTypes: [
     {
-      type: "@cinatra-ai/slide-deck:deck",
+      type: "@cinatra-ai/slide-deck-artifact:deck",
       claim: "dedicated",
       dispositions: {
         projection: "artifact-safe",

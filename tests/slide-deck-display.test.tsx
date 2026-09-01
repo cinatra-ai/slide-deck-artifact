@@ -36,7 +36,7 @@ function props(overrides: Partial<ArtifactRendererProps> = {}): ArtifactRenderer
     artifact: {
       id: "art_9",
       title: "Q3 business review",
-      objectType: "@cinatra-ai/slide-deck:deck",
+      objectType: "@cinatra-ai/slide-deck-artifact:deck",
       mime: DECK_PDF_MIME,
       size: 1_048_576,
       createdAt: "2026-08-31T09:00:00.000Z",
@@ -83,6 +83,25 @@ describe("the manifest declares the display at the new props version", () => {
     );
     const mod = await import("../src/renderers/detail");
     expect(typeof mod.default).toBe("function");
+  });
+
+  it("names its object type in the package's own namespace", () => {
+    // THE REGISTRAR CONVENTION. The host registers an object type under the
+    // namespace of the package that declares it. A type named for a package
+    // that is not this one is owned by nobody, so the registrar registers it
+    // for nobody and the store refuses to mint a row of that kind at all.
+    expect(artifact.objectTypes).toHaveLength(1);
+    expect(artifact.objectTypes[0].type).toBe(`${manifest.name}:deck`);
+  });
+
+  it("declares the same object type in the manifest the package exports", async () => {
+    // The type string lives in two independently typed places — the JSON
+    // manifest the registrar reads and the typed manifest the package exports.
+    // They must never disagree.
+    const { slideDeckArtifactManifest } = await import("../src/index");
+    expect(slideDeckArtifactManifest.objectTypes?.[0]?.type).toBe(
+      artifact.objectTypes[0].type,
+    );
   });
 
   it("declares the host's UI package as an optional peer, never a dependency", () => {
