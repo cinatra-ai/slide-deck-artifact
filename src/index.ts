@@ -31,6 +31,10 @@ export const slideDeckArtifactManifest: SemanticArtifactManifest = {
         propsApiVersion: 2,
         representations: ["application/pdf"],
       },
+      listRow: {
+        entry: "./src/renderers/list-row.tsx",
+        propsApiVersion: 1,
+      },
     },
   },
   skills: {

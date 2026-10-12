@@ -31,6 +31,9 @@
       "optional": true
     }
   },
+  "dependencies": {
+    "lucide-react": "^1.20.0"
+  },
   "devDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -71,6 +74,10 @@
             "representations": [
               "application/pdf"
             ]
+          },
+          "listRow": {
+            "entry": "./src/renderers/list-row.tsx",
+            "propsApiVersion": 1
           }
         }
       },
@@ -113,6 +120,7 @@
       "import": "./src/renderers/detail.tsx",
       "default": "./src/renderers/detail.tsx"
     },
+    "./src/renderers/list-row": "./src/renderers/list-row.tsx",
     "./src/renderer-props": {
       "types": "./src/renderer-props.ts",
       "import": "./src/renderer-props.ts",
